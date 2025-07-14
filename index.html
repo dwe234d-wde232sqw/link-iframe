@@ -15,7 +15,10 @@
         border: none; /* 可选：移除边框 */
     }
     </style>
-    <script>        // 获取当前页面的查询参数 id
+</head>
+<body>
+     <iframe title="短链网页"></iframe>
+      <script>        // 获取当前页面的查询参数 id
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
 
@@ -37,8 +40,5 @@
         console.warn('未找到 code 参数');
     }
     </script>
-</head>
-<body>
-     <iframe src="https://nav.wangyinjie.cn/" title="短链网页"></iframe>
 </body>
 </html>

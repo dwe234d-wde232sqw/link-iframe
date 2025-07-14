@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>短链网页</title>
+    <style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    iframe {
+        width: 100vw;
+        height: 100vh;
+        border: none; /* 可选：移除边框 */
+    }
+    </style>
+    <script>        // 获取当前页面的查询参数 id
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+        // 调用接口并获取重定向 URL
+        fetch(`https://code.server.wangyinjie.cn/link/${code}`, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => {
+            const iframe = document.querySelector('iframe');
+                if (iframe) {
+                    iframe.src = data.url;
+                }
+        }).catch(error => {
+            console.error('请求失败:', error);
+        });
+    } else {
+        console.warn('未找到 code 参数');
+    }
+    </script>
+</head>
+<body>
+     <iframe src="https://nav.wangyinjie.cn/" title="短链网页"></iframe>
+</body>
+</html>

@@ -31,8 +31,8 @@
             .then(data => {
             const iframe = document.querySelector('iframe');
                 if (iframe) {
+                    iframe.referrerpolicy = "strict-origin-when-cross-origin";
                     iframe.src = data.url;
-                    iframe.referrerpolicy = 'strict-origin-when-cross-origin';
                 }
         }).catch(error => {
             console.error('请求失败:', error);

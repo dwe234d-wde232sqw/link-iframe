@@ -32,7 +32,7 @@
             .then(data => {
             const iframe = document.querySelector('iframe');
                 if (iframe) {
-                    // iframe.referrerpolicy = "strict-origin-when-cross-origin";
+                    iframe.referrerpolicy = "strict-origin-when-cross-origin";
                     iframe.src = data.url;
                 }
         }).catch(error => {

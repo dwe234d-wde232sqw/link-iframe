@@ -18,7 +18,10 @@
     </style>
 </head>
 <body>
-     <iframe referrerpolicy="strict-origin-when-cross-origin" title="短链网页"></iframe>
+     <iframe referrerpolicy="strict-origin-when-cross-origin" title="短链网页"  
+      onload="checkIframeLoad()"
+      onerror="handleIframeError()"
+      sandbox="allow-scripts allow-same-origin"></iframe>
       <script>        // 获取当前页面的查询参数 id
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
@@ -40,6 +43,25 @@
         });
     } else {
         console.warn('未找到 code 参数');
+    }
+     // 检测iframe是否加载成功
+    function checkIframeLoad() {
+      const iframe = document.getElementById('targetFrame');
+      try {
+        // 跨域检测需结合try-catch
+        if (!iframe.contentWindow || iframe.contentWindow.location.href === 'about:blank') {
+          throw new Error('空内容');
+        }
+        console.log('iframe加载成功');
+      } catch (e) {
+        handleIframeError();
+      }
+    }
+
+    // 错误处理逻辑
+    function handleIframeError() {
+      document.getElementById('errorOverlay').style.display = 'block';
+      console.error('iframe加载失败');
     }
     </script>
 </body>

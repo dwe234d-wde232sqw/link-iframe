@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-     <iframe referrerpolicy="strict-origin-when-cross-origin" title="短链网页"></iframe>
+     <iframe title="短链网页"></iframe>
       <script>        // 获取当前页面的查询参数 id
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
@@ -32,7 +32,7 @@
             .then(data => {
             const iframe = document.querySelector('iframe');
                 if (iframe) {
-                    iframe.referrerpolicy = "strict-origin-when-cross-origin";
+                    // iframe.referrerpolicy = "strict-origin-when-cross-origin";
                     iframe.src = data.url;
                 }
         }).catch(error => {
